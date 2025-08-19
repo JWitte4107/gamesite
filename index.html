@@ -40,8 +40,7 @@
       { name: "CS 1.6 Online", url: "https://play-cs.com" },
       { name: "Bloxorz", url: "https://bloxorz.game-files.crazygames.com/ruffle/bloxorz.html?ssrDevice=desktop&isNewUser=false&v=1.338" },
       { name: "Funny Shooter 2", url: "https://www.gamenora.com/embed/funny-shooter-2" },
-      { name: "Smash Your Computer", url: "https://www.gamenora.com/embed/smash-your-computer-" },
-      { name: "Half-Life 1", url: "/emupedia-game-half-life1/" } // Added Half-Life
+      { name: "Smash Your Computer", url: "https://www.gamenora.com/embed/smash-your-computer-" } // new game added
     ];
 
     const container = document.getElementById('games');
@@ -56,10 +55,12 @@
           <button class="close-button" style="display:none;">Close</button>
           <button class="fullscreen-button" style="display:none;">Fullscreen</button>
         </div>
-        <iframe 
-          allow="autoplay; fullscreen; accelerometer; gyroscope; geolocation; microphone; camera; midi; encrypted-media; clipboard-read; clipboard-write"
-          sandbox="allow-forms allow-downloads allow-modals allow-pointer-lock allow-popups allow-popups-to-escape-sandbox allow-presentation allow-same-origin allow-scripts allow-top-navigation-by-user-activation">
-        </iframe>
+        <iframe allow="accelerometer; gyroscope; gamepad; autoplay; payment; fullscreen; microphone; clipboard-read; clipboard-write 'self'" 
+                webkitallowfullscreen="true" 
+                mozallowfullscreen="true" 
+                msallowfullscreen="true" 
+                allowfullscreen="true" 
+                sandbox="allow-forms allow-modals allow-orientation-lock allow-pointer-lock allow-popups allow-presentation allow-scripts allow-same-origin allow-downloads allow-popups-to-escape-sandbox"></iframe>
       `;
 
       const btnPlay = card.querySelector('.play-button');
@@ -70,15 +71,6 @@
       btnPlay.addEventListener('click', () => {
         iframe.src = game.url;
         iframe.style.display = 'block';
-
-        // If it's Half-Life, focus the iframe after load
-        if(game.name === "Half-Life 1") {
-          iframe.onload = () => {
-            iframe.focus();
-            iframe.contentWindow.focus();
-          };
-        }
-
         btnPlay.style.display = 'none';
         btnClose.style.display = 'inline-block';
         btnFull.style.display = 'inline-block';
