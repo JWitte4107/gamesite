@@ -9,9 +9,10 @@
     h1 { text-align: center; }
     .game-card { margin: 15px 0; padding: 10px; background: #222; border-radius: 8px; }
     .game-card h2 { margin: 0 0 5px 0; }
-    .button-group { display: flex; gap: 5px; margin-bottom: 10px; }
+    .button-group { margin-bottom: 10px; }
     .play-button, .close-button, .fullscreen-button { 
       padding: 5px 10px; 
+      margin-right: 5px; 
       cursor: pointer; 
       background: #0a84ff; 
       border: none; 
@@ -39,11 +40,7 @@
       { name: "CS 1.6 Online", url: "https://play-cs.com" },
       { name: "Bloxorz", url: "https://bloxorz.game-files.crazygames.com/ruffle/bloxorz.html?ssrDevice=desktop&isNewUser=false&v=1.338" },
       { name: "Funny Shooter 2", url: "https://www.gamenora.com/embed/funny-shooter-2" },
-      { name: "Smash Your Computer", url: "https://www.gamenora.com/embed/smash-your-computer-" },
-      { 
-        name: "We Become What We Behold", 
-        url: "https://4041ad3f-ee25-483b-ae8b-51b16b86ac67.poki-gdn.com/c2e2e416-d187-42ef-a501-85ff9c905ad4/index.html?country=US&ccpaApplies=0&url_referrer=https%3A%2F%2Fpoki.com%2F&tag=pg-4f28d79996a232972ce2f42a84e3db5d8605ca8d&site_id=3&iso_lang=en&poki_url=https%3A%2F%2Fpoki.com%2Fen%2Fg%2Fwe-become-what-we-behold&hoist=yes&nonPersonalized=n&cloudsavegames=n&familyFriendly=n&categories=6%2C7%2C37%2C67%2C91%2C826%2C1139%2C1140%2C1166%2C1190&game_id=4041ad3f-ee25-483b-ae8b-51b16b86ac67&game_version_id=c2e2e416-d187-42ef-a501-85ff9c905ad4&inspector=0&csp=1"
-      }
+      { name: "Smash Your Computer", url: "https://www.gamenora.com/embed/smash-your-computer-" } // new game added
     ];
 
     const container = document.getElementById('games');
@@ -72,15 +69,6 @@
       const iframe = card.querySelector('iframe');
 
       btnPlay.addEventListener('click', () => {
-        // Close all other iframes first
-        document.querySelectorAll('iframe').forEach(f => {
-          f.style.display = 'none';
-          f.src = '';
-        });
-        document.querySelectorAll('.play-button').forEach(b => b.style.display = 'inline-block');
-        document.querySelectorAll('.close-button, .fullscreen-button').forEach(b => b.style.display = 'none');
-
-        // Open this game
         iframe.src = game.url;
         iframe.style.display = 'block';
         btnPlay.style.display = 'none';
@@ -109,15 +97,6 @@
       });
 
       container.appendChild(card);
-    });
-
-    // Keyboard shortcut: Esc closes all iframes
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') {
-        document.querySelectorAll('iframe').forEach(f => f.style.display = 'none');
-        document.querySelectorAll('.play-button').forEach(b => b.style.display = 'inline-block');
-        document.querySelectorAll('.close-button, .fullscreen-button').forEach(b => b.style.display = 'none');
-      }
     });
   </script>
 </body>
